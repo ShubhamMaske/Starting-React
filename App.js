@@ -6,7 +6,7 @@ const parent = React.createElement(
         {id: "child"},
         [ React.createElement("h1", {}, "I am an H1 tag"),
             React.createElement("h2", {}, "I am an H2 tag") 
-        ]
+        ] //we can add multiple element using array
     )
 )
 console.log(parent)
