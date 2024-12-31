@@ -1978,20 +1978,18 @@ const Body = () => {
         <div className="body">
             <div className="Search">search</div>
             <div className="res-container">
-                <RestaurantCard resData={restaurantList[0]}/>
+                {/* <RestaurantCard resData={restaurantList[0]}/>
                 <RestaurantCard resData={restaurantList[1]}/>
                 <RestaurantCard resData={restaurantList[2]}/>
-                <RestaurantCard resData={restaurantList[3]}/>
-                <RestaurantCard resData={restaurantList[4]}/>
-                <RestaurantCard resData={restaurantList[5]}/>
-                <RestaurantCard resData={restaurantList[6]}/>
-                <RestaurantCard resData={restaurantList[7]}/>
-                <RestaurantCard resData={restaurantList[8]}/>
-                <RestaurantCard resData={restaurantList[9]}/>
-                <RestaurantCard resData={restaurantList[10]}/>
-                <RestaurantCard resData={restaurantList[11]}/>
-                <RestaurantCard resData={restaurantList[12]}/>
-                <RestaurantCard resData={restaurantList[13]}/>
+                <RestaurantCard resData={restaurantList[3]}/> 
+                Instead of this we use js map to loop over resList array and write inside {} braces
+                */}
+                {
+                  
+                  restaurantList.map((restaurant) => {
+                    return <RestaurantCard key={restaurant.info.id} resData={restaurant}/>
+                  })
+                }
             </div>
         </div>    
     )
