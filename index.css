@@ -65,3 +65,19 @@
     background-color: #f0f0f0;
 }
 
+.login {
+    margin: 0px 10px;
+    cursor: pointer;
+}
+
+.filter {
+    display: flex;
+}
+
+.search {
+    margin-top: 2px;
+}
+
+.search-box {
+    margin-right: 1px;
+}

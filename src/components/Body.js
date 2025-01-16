@@ -6,6 +6,9 @@ import { SWIGGY_URL } from '../utils/constants'
 
 const Body = () => {
   const [listOfRestaurants, setlistOfRestaurants] = useState([])
+  const [filteredRestaurants, setFilteredRestaurants] = useState([])
+
+  const [searchText, setSearchText] = useState("")
 
   // it use after the component rendered
   useEffect(() => {
@@ -20,26 +23,47 @@ const Body = () => {
     //optional chaining
     // console.log(json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants)
     setlistOfRestaurants(json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants)
+    setFilteredRestaurants(json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants)
   }
 
-  if(listOfRestaurants.length === 0) {
-    return <Shimmer />
-  }
 
-  return (
+  // conditional Rendering
+//   if(listOfRestaurants.length === 0) {
+//     return <Shimmer />
+//   }
+
+  return listOfRestaurants.length === 0? <Shimmer /> : (
     <div className='body'>
-      <div className='Search'>search</div>
-      <button
-        className='filter-btn'
-        onClick={() => {
-          const filteredList = listOfRestaurants.filter(
-            res => res.info.avgRating > 4.4
-          )
-          setlistOfRestaurants(filteredList)
-        }}
-      >
-        Top Rated Restaurants
-      </button>
+    <div className='filter'>
+        <div className='search'>
+            <input 
+                type='text' 
+                className='search-box'
+                value = {searchText}
+                onChange={(e) => {
+                    setSearchText(e.target.value)
+                }}></input>
+            <button onClick={() => {
+                console.log(searchText)
+                const filterdRestraunt = listOfRestaurants.filter((res) => {
+                    return res.info.name.toLowerCase().includes(searchText.toLowerCase());
+                })
+
+                setFilteredRestaurants(filterdRestraunt)
+            }}>Search</button>
+        </div>
+        <button
+            className='filter-btn'
+            onClick={() => {
+            const filteredList = listOfRestaurants.filter(
+                res => res.info.avgRating > 4.4
+            )
+            setFilteredRestaurants(filteredList)
+            }}
+        >
+            Top Rated Restaurants
+        </button>
+      </div>
       <div className='res-container'>
         {/* <RestaurantCard resData={restaurantList[0]}/>
                 <RestaurantCard resData={restaurantList[1]}/>
@@ -47,7 +71,7 @@ const Body = () => {
                 <RestaurantCard resData={restaurantList[3]}/> 
                 Instead of this we use js map to loop over resList array and write inside {} braces
                 */}
-        {listOfRestaurants.map(restaurant => {
+        {filteredRestaurants.map(restaurant => {
           return (
             <RestaurantCard key={restaurant.info.id} resData={restaurant} />
           )
