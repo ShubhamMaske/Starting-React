@@ -3,6 +3,7 @@ import restaurantList from '../utils/mockData'
 import { useState, useEffect } from 'react'
 import Shimmer from './Shimmer'
 import { SWIGGY_URL } from '../utils/constants'
+import { Link } from "react-router";
 
 const Body = () => {
   const [listOfRestaurants, setlistOfRestaurants] = useState([])
@@ -73,7 +74,7 @@ const Body = () => {
                 */}
         {filteredRestaurants.map(restaurant => {
           return (
-            <RestaurantCard key={restaurant.info.id} resData={restaurant} />
+            <Link key={restaurant.info.id} to= {"/restaurants/"+ restaurant.info.id}><RestaurantCard key={restaurant.info.id} resData={restaurant} /></Link>
           )
         })}
       </div>
