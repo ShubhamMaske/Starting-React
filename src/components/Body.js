@@ -43,16 +43,16 @@ const Body = () => {
 
   return listOfRestaurants.length === 0? <Shimmer /> : (
     <div className='body'>
-    <div className='filter'>
-        <div className='search'>
+    <div className='flex items-center '>
+        <div className='search m-3 p-3'>
             <input 
                 type='text' 
-                className='search-box'
+                className='border border-b-black'
                 value = {searchText}
                 onChange={(e) => {
                     setSearchText(e.target.value)
                 }}></input>
-            <button onClick={() => {
+            <button className= "px-2 py-1 m-1 cursor-pointer bg-blue-300 rounded-lg" onClick={() => {
                 console.log(searchText)
                 const filterdRestraunt = listOfRestaurants.filter((res) => {
                     return res.info.name.toLowerCase().includes(searchText.toLowerCase());
@@ -61,8 +61,9 @@ const Body = () => {
                 setFilteredRestaurants(filterdRestraunt)
             }}>Search</button>
         </div>
+        <div m-3 p-3 >
         <button
-            className='filter-btn'
+            className='cursor-pointer bg-green-300 px-2 py-1 m-5 rounded-lg'
             onClick={() => {
             const filteredList = listOfRestaurants.filter(
                 res => res.info.avgRating > 4.4
@@ -72,8 +73,10 @@ const Body = () => {
         >
             Top Rated Restaurants
         </button>
+        </div>
+        
       </div>
-      <div className='res-container'>
+      <div className='flex flex-wrap'>
         {/* <RestaurantCard resData={restaurantList[0]}/>
                 <RestaurantCard resData={restaurantList[1]}/>
                 <RestaurantCard resData={restaurantList[2]}/>
