@@ -42,7 +42,7 @@ const Body = () => {
   }
 
   return listOfRestaurants.length === 0? <Shimmer /> : (
-    <div className='body'>
+    <div className='body '>
     <div className='flex items-center '>
         <div className='search m-3 p-3'>
             <input 
@@ -76,7 +76,7 @@ const Body = () => {
         </div>
         
       </div>
-      <div className='flex flex-wrap'>
+      <div className='flex flex-wrap justify-center'>
         {/* <RestaurantCard resData={restaurantList[0]}/>
                 <RestaurantCard resData={restaurantList[1]}/>
                 <RestaurantCard resData={restaurantList[2]}/>
