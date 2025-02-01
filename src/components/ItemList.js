@@ -10,7 +10,7 @@ const ItemList = ({items}) => {
                         <div className="w-9/12">
                             <div className="py-2">
                                 <span className="font-bold">{item.card.info.name}</span>
-                                <span>- ₹ {item.card.info.price || item.card.info.defaultPrice / 100}</span>
+                                <span>- ₹ {(item.card.info.price || item.card.info.defaultPrice) / 100}</span>
                             </div>
                             <p className="text-sm">
                                 {item.card.info.description}
